@@ -1,0 +1,24 @@
+name: Dispatch Workflow
+on:
+  workflow_dispatch:
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print context
+        run: |
+          echo "${{ toJSON(github) }}"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run dispatch script
+        id: version
+        uses: ./
+
+      - name: output
+        run: |
+          echo "${{ toJSON(steps.version.outputs) }}"

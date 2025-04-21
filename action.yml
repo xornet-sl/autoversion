@@ -1,0 +1,53 @@
+name: "Determine a project's version"
+description: "Some description"
+author: "Vladimir Sukhonosov"
+
+runs:
+  using: node20
+  main: dist/index.js
+
+branding:
+  icon: tag
+  color: green
+
+inputs:
+  tag_prefix:
+    description: "Tag prefix"
+    required: false
+    default: "v"
+  search_tags_globally:
+    description: "Search tags across all branches"
+    required: false
+    default: "false"
+  release_branch_regexp:
+    description: "Release branch name (regexp). Default: ^(main|master)$. Put empty string to disable"
+    required: false
+    default: "^(main|master)$"
+  bump_type:
+    description: "Bump type. major|minor|patch|auto. auto means that the action will determine the type of bump based on the commit messages. Default: auto"
+    required: false
+    default: "auto"
+  breaking_change_regexp:
+    description: "Breaking change regexp"
+    required: false
+    default: '^(breaking changes: |(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert)(\(.+\))?!: ).+'
+  minor_change_regexp:
+    description: "Minor change regexp"
+    required: false
+    default: '^(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert)(\(.+\))?: .+'
+
+outputs:
+  last_tag:
+    description: "Last (previous) tag. If event is to push version tag, then last_tag == pushed tag."
+  last_tag_sha:
+    description: "Last (previous) tag SHA. If event is to push version tag, then last_tag_sha == pushed tag SHA."
+  last_version:
+    description: "Last (previous) version. If event is to push version tag, then last_version == pushed version. Version is a tag without prefix."
+  suggested_version:
+    description: "New suggested version. If event is to push version tag, then suggested_version == pushed version. Otherwise new version will be set to prerelease version (unless pushing to the release branch)."
+  suggested_tag:
+    description: "New suggested tag based on suggested version."
+  on_tag:
+    description: "True if the event is to push version tag. False otherwise."
+  on_release_branch:
+    description: "True if the event is to push to release branch. False otherwise."
