@@ -51,3 +51,5 @@ outputs:
     description: "True if the event is to push version tag. False otherwise."
   on_release_branch:
     description: "True if the event is to push to release branch. False otherwise."
+  is_release_version:
+    description: "True if the suggested versions is a release version. False otherwise."

@@ -32254,6 +32254,7 @@ async function run() {
     coreExports.setOutput("suggested_tag", getTagFromVersion(tagPrefix, nextVersion));
     coreExports.setOutput("on_tag", onTag.toString());
     coreExports.setOutput("on_release_branch", onReleaseBranch.toString());
+    coreExports.setOutput("is_release_version", (nextVersion.prerelease.length == 0 && nextVersion.build.length == 0).toString());
 }
 
 if (!process.env.JEST_WORKER_ID) {

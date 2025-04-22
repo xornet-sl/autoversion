@@ -90,4 +90,5 @@ export async function run(): Promise<void> {
   setOutput("suggested_tag", getTagFromVersion(tagPrefix, nextVersion));
   setOutput("on_tag", onTag.toString());
   setOutput("on_release_branch", onReleaseBranch.toString());
+  setOutput("is_release_version", (nextVersion.prerelease.length == 0 && nextVersion.build.length == 0).toString());
 }
