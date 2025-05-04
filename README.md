@@ -1,5 +1,5 @@
-# Automatically suggest a new version
-
 [![Coverage](./badges/coverage.svg)](./badges/coverage.svg)
 
-TODO
+# Automatically suggest a new version
+
+**This Github Action is in under development. Do not rely on it**
